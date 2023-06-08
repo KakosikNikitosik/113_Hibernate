@@ -1,13 +1,15 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
+//import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.util.Util;
+
 
 public class Main {
     public static void main(String[] args) {
-        Util.getConnection();
-        UserDao userDao = new UserDaoJDBCImpl();
+        Util.getSessionFactory();
+        UserDao userDao = new UserDaoHibernateImpl();
 
         userDao.createUsersTable();
 
@@ -16,10 +18,10 @@ public class Main {
         userDao.saveUser("Биба", "Putin", (byte) 72);
         userDao.saveUser("Боба", "Medvedev", (byte) 50);
 
-        //userDao.removeUserById(1);
-        userDao.getAllUsers();
-        userDao.cleanUsersTable();
-        userDao.dropUsersTable();
+
+       //userDao.removeUserById(1);
+       userDao.getAllUsers();
+       userDao.cleanUsersTable();
+       userDao.dropUsersTable();
     }
 }
-
